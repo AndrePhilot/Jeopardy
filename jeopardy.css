@@ -1,0 +1,183 @@
+/* some colors you may find useful:
+  #115ff4
+  #060ce940px
+  #28a200
+  #8d2ab5
+  #74119c
+*/
+/* 
+* {
+  box-sizing: content-box;
+} */
+
+@font-face {
+  font-family: 'gyparodyregular';
+  src: url('gyparody-webfont.woff2') format('woff2'),
+       url('gyparody-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+th {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.8vw;
+}
+
+@media (max-width: 1000px) {
+  th {
+    font-size: 18px;
+  }
+}
+
+button {
+  font-family: 'gyparodyregular', sans-serif;
+}
+
+.btn.btn-primary.btn-lg.btn-block {
+  font-size: 40px;
+}
+
+td:hover {
+  background-color:dodgerblue;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  min-width: 768px;
+  padding-top: 10px;
+  margin: 0;
+}
+
+.table {
+  table-layout: fixed;
+}
+
+.table.table-bordered, .table.table-bordered th, .table.table-bordered td {
+  border-color: black;
+}
+
+.fa-spinner {
+  font-size: 20vw;
+  text-align: center;
+}
+
+body {
+  min-width: 768px;
+  width: 100%;
+  height: 100%;
+  min-height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.text-wrap.text-break.align-center {
+  border-bottom: 10px solid black;
+}
+
+.table-thicker-borders tbody th,
+.table-thicker-borders tbody td,
+.table-thicker-borders thead th {
+  border: 5px solid black;
+  padding: 0.1em;
+  font-weight: bold;
+  text-shadow: black 1px 1px;
+  width: 15vw;
+  height: 14vh;
+  min-width: 120px;
+  min-height: 80px;
+  overflow: hidden;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.table-thicker-borders tbody td {
+  font-size: 14px;
+}
+
+.cell-content.answer {
+  background-color: blue;
+  vertical-align: middle !important;
+}
+
+.cell-content {
+  transition: all 0.5s ease-in-out;
+  text-transform: uppercase;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-wrap {
+  vertical-align: middle !important;
+}
+
+/* Add a new class for the expanded state */
+.expanded {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  background-color: #115ff4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 1;
+  animation: expand 0.5s ease-in-out forwards;
+  font-size: 200% !important;
+}
+
+@keyframes expand {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+/* Add a class for the animation when revealing the answer */
+.revealing-answer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  background-color: #115ff4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 1;
+  font-size: 200% !important;
+  animation: showing 1.5s step-end;
+}
+
+@keyframes showing {
+  0% { 
+    width: 100vw;
+    height: 100vh;
+   }
+   100% {
+    width: 100vw;
+    height: 100vh;
+}
+}
