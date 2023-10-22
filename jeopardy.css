@@ -83,6 +83,10 @@ td:hover {
   text-align: center;
 }
 
+.fa-solid.fa-circle-question {
+  font-size: 40px;
+}
+
 body {
   min-width: 768px;
   width: 100%;

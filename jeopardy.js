@@ -114,6 +114,24 @@ function fillTable() {
     $('.table-container').append(table);
 }
 
+//Manages the click on the question mark or on the cell
+
+function manageClick(evt) {
+    if (evt.target.className === 'fa-solid fa-circle-question') {
+        let catIdx = evt.target.parentElement.id[0];
+        let clueIdx = evt.target.parentElement.id[1];
+        let clickedCell = $(`#${catIdx}${clueIdx}`);
+        handleClick(evt, catIdx, clueIdx, clickedCell);
+        console.log("Click on the question mark");
+    } else {
+        let catIdx = evt.target.id[0];
+        let clueIdx = evt.target.id[1];
+        let clickedCell = $(`#${catIdx}${clueIdx}`);
+        handleClick(evt, catIdx, clueIdx, clickedCell);
+        console.log("Click on the td cell");
+    }
+}
+
 /** Handle clicking on a clue: show the question or answer.
  *
  * Uses .showing property on clue to determine what to show:
@@ -122,42 +140,38 @@ function fillTable() {
  * - if currently "answer", ignore click
  * */
 
-function handleClick(evt) {
-    let catIdx = evt.target.id[0];
-    let clueIdx = evt.target.id[1];
-    let clickedCell = $(`#${catIdx}${clueIdx}`);
+function handleClick(evt, catIdx, clueIdx, clickedCell) {
 
-    //Only runs the code if the categories array is populated
-    if (categories[catIdx]) {
-        if (!categories[catIdx].clues[clueIdx].showing) {
-            clickedCell.addClass('expanded');
-            $(`#${catIdx}${clueIdx}`).html(categories[catIdx].clues[clueIdx].question);
-            categories[catIdx].clues[clueIdx].showing = 'question';
+        //Only runs the code if the categories array is populated
+        if (categories[catIdx]) {
+            if (!categories[catIdx].clues[clueIdx].showing) {
+                clickedCell.addClass('expanded');
+                $(`#${catIdx}${clueIdx}`).html(categories[catIdx].clues[clueIdx].question);
+                categories[catIdx].clues[clueIdx].showing = 'question';
 
-            // After 2 seconds, remove the revealing-answer class and shrink the cell
-            // setTimeout(() => {
-            //     clickedCell.removeClass('revealing-answer');
-            //     clickedCell.removeClass('expanded');
-            // }, 9000);
-        }
-        
-        else if (categories[catIdx].clues[clueIdx].showing === 'question') {
-            const answer = $(`#${catIdx}${clueIdx}`).html(categories[catIdx].clues[clueIdx].answer);
-            answer;
-            categories[catIdx].clues[clueIdx].showing = 'answer';
-            evt.target.className = 'cell-content answer revealing-answer';
-            // These properties will come handy when trying to implement an animation that starts
-            // at the original position of the cell:
-            // console.log(evt.clientX, evt.clientY);
+                // After 2 seconds, remove the revealing-answer class and shrink the cell
+                // setTimeout(() => {
+                //     clickedCell.removeClass('revealing-answer');
+                //     clickedCell.removeClass('expanded');
+                // }, 9000);
+            }
+            
+            else if (categories[catIdx].clues[clueIdx].showing === 'question') {
+                $(`#${catIdx}${clueIdx}`).html(categories[catIdx].clues[clueIdx].answer);
+                categories[catIdx].clues[clueIdx].showing = 'answer';
+                evt.target.className = 'cell-content answer revealing-answer';
+                // These properties will come handy when trying to implement an animation that starts
+                // at the original position of the cell:
+                // console.log(evt.clientX, evt.clientY);
 
-            // After 2 seconds, remove the revealing-answer class and shrink the cell
-            setTimeout(() => {
-                clickedCell.removeClass('revealing-answer');
-                clickedCell.removeClass('expanded');
-            }, 1500);
+                // After 2 seconds, remove the revealing-answer class and shrink the cell
+                setTimeout(() => {
+                    clickedCell.removeClass('revealing-answer');
+                    clickedCell.removeClass('expanded');
+                }, 1500);
+            }
         }
     }
-}
 
 /** Wipe the current Jeopardy board, show the loading spinner,
  * and update the button used to fetch data.
@@ -211,5 +225,5 @@ $('button').one('click', onClick);
 /** On page load, add event handler for clicking clues */
 
 $(document).ready(() => {
-    $('body').on('click', handleClick);
+    $('.table-container').on('click', '.cell-content', manageClick);
 });
