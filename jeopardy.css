@@ -33,6 +33,23 @@ button {
   font-family: 'gyparodyregular', sans-serif;
 }
 
+span {
+  font-size: 15px;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+img {
+  width: 20px;
+  margin: 5px;
+}
+
+button::after {
+
+}
+
 .btn.btn-primary.btn-lg.btn-block {
   font-size: 40px;
 }
