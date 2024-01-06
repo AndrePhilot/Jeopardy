@@ -32,7 +32,7 @@ async function getCategoryIds() {
 
     while (catIds.length < 6) {
         // Highest id category is 28163 and lowest is 1
-        const response = await axios.get(`https://jservice.arcanine.io/api/category?id=${Math.ceil(Math.random() * 28163)}`);
+        const response = await axios.get(`https://jservice.io/api/category?id=${Math.ceil(Math.random() * 28163)}`);
         if (response.data.clues_count >= 5 && catIds.indexOf(response.data.id) === -1) {
             catIds.push(response.data.id);
         }
@@ -53,7 +53,7 @@ async function getCategoryIds() {
  */
 
 async function getCategory(catId) {
-    const response = await axios.get(`https://jservice.arcanine.io/api/category?id=${catId}`);
+    const response = await axios.get(`https://jservice.io/api/category?id=${catId}`);
     const clues = response.data.clues.slice(0, 5).map(clue => ({
         question: clue.question,
         answer: clue.answer,
